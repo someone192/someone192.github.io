@@ -7,7 +7,7 @@
 <meta name="description" content="Robots built by Valerii Lebedintsev, a student at the IT Lyceum of Kazan Federal University in Kazan, Russia.">
 <meta property="og:title" content="Valerii Lebedintsev: robots">
 <meta property="og:description" content="A truck-loading robot, a drawing robot and a line follower, built from scratch.">
-<meta property="og:image" content="img/loader-frame.jpg">
+<meta property="og:image" content="https://someone192.github.io/img/loader-frame.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%232445B8' stroke-width='4' stroke-linejoin='round'%3E%3Crect x='6' y='6' width='52' height='52'/%3E%3Ccircle cx='32' cy='32' r='26'/%3E%3Cpolygon points='32,6 54.5,45 9.5,45'/%3E%3C/g%3E%3C/svg%3E">
 <style>
 @font-face {
@@ -151,8 +151,17 @@ footer p { margin: 0.25rem 0; }
 @media (max-width: 48rem) {
   .hero { grid-template-columns: 1fr; gap: 2rem; padding-top: 2.5rem; padding-bottom: 2.5rem; }
   .plot { max-width: 14rem; }
-  .project { grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem 0; }
   .note { padding: 2.5rem 0; }
+
+  /* On a phone the robot's name goes first, then the photos, then the story */
+  .project { display: flex; flex-direction: column; gap: 0; padding: 2.5rem 0; }
+  .project .text { display: contents; }
+  .project .text > * { order: 2; margin: 1rem 0 0; }
+  .project .text > h2 { order: 0; margin: 0; }
+  .project .text > .meta { order: 0; margin-top: 0.4rem; }
+  .project .text > .meta + p,
+  .project .text > .links { margin-top: 1.25rem; }
+  .project .media { order: 1; margin-top: 1.25rem; }
 }
 </style>
 </head>
@@ -189,14 +198,22 @@ footer p { margin: 0.25rem 0; }
 <main class="wrap">
 
   <section class="project" aria-labelledby="loader">
-    <div class="media">
+    <div class="media pair">
       <figure>
-        <img src="img/loader-frame.jpg" width="1400" height="1050" alt="A rectangular steel frame on four legs, welded from square tube, standing on cardboard in a garage">
+        <video class="loop" data-src="video/corexy-run.mp4" poster="img/corexy-run-poster.jpg" width="540" height="540" muted loop playsinline preload="none" aria-label="The gantry robot's bridge and carriage moving over the frame during a test"></video>
+        <figcaption>Test run, February 2026.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/loader-frame-sq.jpg" width="1000" height="1000" alt="A rectangular steel frame on four legs, welded from square tube, standing on cardboard in a garage">
         <figcaption>The steel frame right after I welded it.</figcaption>
       </figure>
       <figure>
-        <img src="img/loader-board.jpg" width="1400" height="1050" loading="lazy" alt="A green prototyping board with an ESP32 module and three stepper motor drivers with heat sinks, a red LED glowing">
-        <figcaption>Hand-soldered control board: an ESP32 and three stepper drivers. The PCB I designed for it arrived a month later than promised, so I built the robot with this one.</figcaption>
+        <img src="img/loader-board-sq.jpg" width="1000" height="1000" loading="lazy" alt="A green prototyping board with an ESP32 module and three stepper motor drivers with heat sinks, a red LED glowing">
+        <figcaption>Hand-soldered control board: an ESP32 and three stepper drivers.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/loader-pcb.jpg" width="1000" height="1000" loading="lazy" alt="A black printed circuit board held in a hand, with footprints for an ESP32-WROOM-32 board, three stepper drivers and many connectors">
+        <figcaption>The PCB I designed for it. It arrived a month later than promised, so it isn’t in the robot yet.</figcaption>
       </figure>
     </div>
     <div class="text">
@@ -221,7 +238,7 @@ footer p { margin: 0.25rem 0; }
         <figcaption>Final version, on a test panel.</figcaption>
       </figure>
       <figure>
-        <video class="loop" src="video/pen-lift.mp4" poster="img/pen-lift-poster.jpg" width="480" height="640" autoplay muted loop playsinline preload="metadata" aria-label="A white 3D-printed linkage driven by a servo swings back and forth"></video>
+        <video class="loop" data-src="video/pen-lift.mp4" poster="img/pen-lift-poster.jpg" width="480" height="640" muted loop playsinline preload="none" aria-label="A white 3D-printed linkage driven by a servo swings back and forth"></video>
         <figcaption>A servo lifts the pen off the paper.</figcaption>
       </figure>
       <figure>
@@ -238,10 +255,22 @@ footer p { margin: 0.25rem 0; }
     </div>
   </section>
 
-  <section class="note" aria-labelledby="line">
-    <h2 id="line">Line follower</h2>
-    <p class="meta">2024 to now.</p>
-    <p>My longest project. I built it once and keep rebuilding it, moving the sensors and motors around to see what works better.</p>
+  <section class="project" aria-labelledby="line">
+    <div class="media pair">
+      <figure>
+        <video class="loop" data-src="video/line-follower.mp4" poster="img/line-follower-poster.jpg" width="540" height="720" muted loop playsinline preload="none" aria-label="A small wheeled robot follows a black line across a white field toward the camera"></video>
+        <figcaption>Following the line, October 2025.</figcaption>
+      </figure>
+      <figure>
+        <img src="img/line-follower-close.jpg" width="900" height="1200" loading="lazy" alt="Close-up of the line follower: a round plywood chassis with an Arduino and a sensor shield, a voltage regulator, colored jumper wires and a black geared claw, with a hand adjusting a wire">
+        <figcaption>Between test runs, November 2025.</figcaption>
+      </figure>
+    </div>
+    <div class="text">
+      <h2 id="line">Line follower</h2>
+      <p class="meta">2024 to now.</p>
+      <p>My longest project. I built it once and keep rebuilding it, moving the sensors and motors around to see what works better.</p>
+    </div>
   </section>
 
   <section class="note" aria-labelledby="question">
@@ -260,14 +289,25 @@ footer p { margin: 0.25rem 0; }
 </footer>
 
 <script>
-  // People who ask their system for less motion get the clip paused, with controls to play it.
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('video.loop').forEach(function (v) {
-      v.removeAttribute('autoplay');
-      v.pause();
-      v.controls = true;
-    });
-  }
+  // Clips load only when they scroll into view and pause when they leave it.
+  // People who ask their system for less motion get controls instead of autoplay.
+  (function () {
+    var videos = document.querySelectorAll('video.loop');
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function load(v) { if (!v.getAttribute('src')) { v.src = v.dataset.src; } }
+    if (calm || !('IntersectionObserver' in window)) {
+      videos.forEach(function (v) { load(v); v.preload = 'metadata'; v.controls = true; });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { load(v); v.play().catch(function () { v.controls = true; }); }
+        else { v.pause(); }
+      });
+    }, { threshold: 0.25 });
+    videos.forEach(function (v) { io.observe(v); });
+  })();
 </script>
 
 </body>
